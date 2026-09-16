@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Himanshu Shiyara — Senior Unity Game Developer. Application for the makRP Unity multiplayer programmer role.">
+<style>
+  :root{ color-scheme: light dark; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+  body{ margin:0; font:14px system-ui, -apple-system, sans-serif; background:#FBFAF7; }
+  img{ max-width:100%; }
+  [hidden]{ display:none !important; }
+</style>
+<title>Himanshu × makRP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>
+  :root{
+    --ground:#FBFAF7; --surface:#FFFFFF; --ink:#1A1917; --ink-2:#56544C;
+    --rule:#E4E1D8; --rule-soft:#EFECE4;
+    --brass:#8A6512; --brass-soft:#F4EDDC;
+    --match:#2F6B3C; --gap:#A14A22;
+    --display:'Archivo','Helvetica Neue',Arial,sans-serif;
+    --body:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --mono:'IBM Plex Mono','SFMono-Regular',Consolas,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#121110; --surface:#1A1917; --ink:#EDEAE0; --ink-2:#9A968A;
+      --rule:#2E2C28; --rule-soft:#232120;
+      --brass:#D4A73C; --brass-soft:#2A2415;
+      --match:#6FBF7F; --gap:#E08B57;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#121110; --surface:#1A1917; --ink:#EDEAE0; --ink-2:#9A968A;
+    --rule:#2E2C28; --rule-soft:#232120;
+    --brass:#D4A73C; --brass-soft:#2A2415;
+    --match:#6FBF7F; --gap:#E08B57;
+  }
+  *{box-sizing:border-box}
+  body{
+    background:var(--ground); color:var(--ink);
+    font-family:var(--body); font-size:16px; line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--ink); text-decoration:underline; text-underline-offset:3px; text-decoration-color:var(--brass); text-decoration-thickness:1.5px}
+  a:hover{color:var(--brass)}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--brass); outline-offset:3px; border-radius:2px}
+
+  .nav{
+    position:sticky; top:env(safe-area-inset-top,0px); z-index:50;
+    background:var(--ground);
+    border-bottom:1px solid var(--rule);
+  }
+  .nav-in{
+    max-width:920px; margin:0 auto; padding-block:11px; padding-left:20px; padding-right:20px;
+    display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+  }
+  .nav-id{font-family:var(--mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink); white-space:nowrap}
+  .nav-links{display:flex; gap:16px; flex-wrap:wrap; margin-left:auto}
+  .nav-links a{
+    font-family:var(--mono); font-size:12px; letter-spacing:.04em;
+    color:var(--ink-2); text-decoration:none; padding-bottom:2px; border-bottom:1.5px solid transparent;
+  }
+  .nav-links a:hover,.nav-links a.on{color:var(--ink); border-bottom-color:var(--brass)}
+
+  .wrap{max-width:920px; margin:0 auto; padding-left:20px; padding-right:20px}
+  section{padding-block:52px; border-bottom:1px solid var(--rule-soft)}
+  section:last-of-type{border-bottom:0}
+  .col{max-width:68ch}
+  p{margin:0 0 18px}
+  p:last-child{margin-bottom:0}
+
+  .eyebrow{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--brass); margin:0 0 14px; display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::after{content:""; flex:1; height:1px; background:var(--rule)}
+  h1{
+    font-family:var(--display); font-weight:700; font-size:clamp(34px,6.2vw,54px);
+    line-height:1.06; letter-spacing:-.025em; margin:0 0 20px; text-wrap:balance;
+  }
+  h2{
+    font-family:var(--display); font-weight:600; font-size:clamp(23px,3.4vw,31px);
+    line-height:1.18; letter-spacing:-.018em; margin:0 0 18px; text-wrap:balance;
+  }
+  h3{
+    font-family:var(--display); font-weight:600; font-size:17px;
+    letter-spacing:-.008em; margin:0 0 7px;
+  }
+  .lede{font-size:clamp(17px,2.2vw,19.5px); line-height:1.58; color:var(--ink-2)}
+  strong{font-weight:600}
+
+  .hero{padding-block:60px 48px; border-bottom:1px solid var(--rule)}
+  .hero-meta{
+    font-family:var(--mono); font-size:12.5px; color:var(--ink-2);
+    display:flex; gap:8px 18px; flex-wrap:wrap; margin-bottom:26px;
+  }
+  .hero-meta span{display:inline-flex; align-items:center; gap:7px}
+  .dot{width:6px; height:6px; border-radius:50%; background:var(--match); flex:none}
+  .cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:30px}
+  .btn{
+    font-family:var(--mono); font-size:13px; letter-spacing:.02em;
+    padding:10px 17px; border:1.5px solid var(--ink); color:var(--ink);
+    text-decoration:none; transition:background .15s,color .15s;
+  }
+  .btn:hover{background:var(--ink); color:var(--ground)}
+  .btn.ghost{border-color:var(--rule); color:var(--ink-2)}
+  .btn.ghost:hover{background:transparent; border-color:var(--brass); color:var(--brass)}
+
+  .fit{display:grid; gap:0; margin-top:26px; border-top:1px solid var(--rule)}
+  .fit-row{
+    display:grid; grid-template-columns:1fr 1.25fr auto; gap:14px 22px;
+    padding-block:18px; border-bottom:1px solid var(--rule-soft); align-items:start;
+  }
+  .fit-ask{font-weight:600; font-size:15px}
+  .fit-ask em{
+    display:block; font-family:var(--mono); font-style:normal; font-size:11px;
+    letter-spacing:.08em; text-transform:uppercase; color:var(--ink-2); margin-bottom:5px; font-weight:400;
+  }
+  .fit-ev{font-size:14.5px; color:var(--ink-2); line-height:1.55}
+  .tag{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:.09em; text-transform:uppercase;
+    padding:3px 9px; white-space:nowrap; border:1px solid currentColor;
+  }
+  .tag.m{color:var(--match)}
+  .tag.p{color:var(--gap)}
+  @media (max-width:640px){
+    .fit-row{grid-template-columns:1fr; gap:8px}
+    .tag{justify-self:start}
+  }
+
+  .note{
+    border-left:2.5px solid var(--gap); background:var(--surface);
+    padding:18px 20px; margin:26px 0 0; font-size:15px; line-height:1.6;
+  }
+  .note .note-h{
+    font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--gap); margin-bottom:8px;
+  }
+
+  .spec{list-style:none; padding:0; margin:22px 0 0; display:grid; gap:0; border-top:1px solid var(--rule)}
+  .spec li{
+    padding-block:15px; border-bottom:1px solid var(--rule-soft);
+    display:grid; grid-template-columns:150px 1fr; gap:6px 22px; align-items:baseline;
+  }
+  .spec .k{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--brass);
+  }
+  .spec .v{font-size:14.5px; color:var(--ink-2); line-height:1.6}
+  .spec .v b{color:var(--ink); font-weight:600}
+  @media (max-width:640px){ .spec li{grid-template-columns:1fr; gap:4px} }
+
+  figure{margin:30px 0 0}
+  .diagram{
+    border:1px solid var(--rule); background:var(--surface);
+    padding:22px 18px; overflow-x:auto;
+  }
+  .diagram svg{display:block; margin:0 auto; max-width:100%; height:auto}
+  figcaption{
+    font-family:var(--mono); font-size:11.5px; line-height:1.6; color:var(--ink-2);
+    margin-top:11px; letter-spacing:.01em;
+  }
+
+  .budget{
+    margin-top:26px; border:1px solid var(--rule); background:var(--surface);
+    padding:20px; font-family:var(--mono); font-size:13px; line-height:1.9;
+    font-variant-numeric:tabular-nums; overflow-x:auto;
+  }
+  .budget .bh{font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--brass); margin-bottom:10px}
+  .budget .r{display:flex; justify-content:space-between; gap:24px; white-space:nowrap}
+  .budget .r.tot{border-top:1px solid var(--rule); margin-top:8px; padding-top:8px; color:var(--ink); font-weight:500}
+  .budget .lbl{color:var(--ink-2)}
+
+  .tl{margin-top:26px; border-top:1px solid var(--rule)}
+  .tl-item{padding-block:22px; border-bottom:1px solid var(--rule-soft)}
+  .tl-top{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:baseline; margin-bottom:4px}
+  .tl-when{font-family:var(--mono); font-size:12px; color:var(--ink-2); white-space:nowrap}
+  .tl-org{font-family:var(--mono); font-size:12.5px; color:var(--brass); margin-bottom:10px}
+  .tl-item p{font-size:14.5px; color:var(--ink-2); margin-bottom:12px}
+  .chips{display:flex; gap:6px; flex-wrap:wrap}
+  .chip{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:.04em;
+    padding:3px 8px; border:1px solid var(--rule); color:var(--ink-2);
+  }
+  .chip.hi{border-color:var(--brass); color:var(--brass); background:var(--brass-soft)}
+
+  .qa{margin-top:26px; border-top:1px solid var(--rule)}
+  .qa-item{padding-block:19px; border-bottom:1px solid var(--rule-soft); display:grid; grid-template-columns:34px 1fr; gap:16px}
+  .qa-n{font-family:var(--mono); font-size:12px; color:var(--brass); padding-top:2px; font-variant-numeric:tabular-nums}
+  .qa-q{font-weight:600; font-size:15px; margin-bottom:5px}
+  .qa-a{font-size:14.5px; color:var(--ink-2); line-height:1.6}
+  .fill{
+    display:inline-block; border-bottom:2px dashed var(--gap); color:var(--gap);
+    font-family:var(--mono); font-size:12.5px; padding:0 4px;
+  }
+
+  .foot{padding-block:44px 52px}
+  .foot-grid{display:flex; gap:26px 44px; flex-wrap:wrap; margin-top:20px}
+  .foot-grid div{min-width:150px}
+  .foot-k{font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-2); margin-bottom:5px}
+  .foot-v{font-size:15px}
+  .sig{
+    margin-top:38px; padding-top:18px; border-top:1px solid var(--rule);
+    font-family:var(--mono); font-size:11.5px; color:var(--ink-2);
+    display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <span class="nav-id">Himanshu Shiyara</span>
+    <div class="nav-links">
+      <a href="#fit">Fit</a>
+      <a href="#network">Networking</a>
+      <a href="#ai">AI</a>
+      <a href="#shipped">Shipped</a>
+      <a href="#apply">Application</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="hero-meta">
+      <span><i class="dot"></i>Available now</span>
+      <span>Rajkot, India &middot; UTC+5:30</span>
+      <span>Remote, long-term</span>
+    </div>
+    <h1>Unity multiplayer programmer for makRP</h1>
+    <p class="lede col">Six years shipping Unity and C# across slot, poker, fish and puzzle titles &mdash; server-authoritative real-money systems, persistent player economies, and WebGL performance work. I build with AI tooling daily, and I ship alone when I have to.</p>
+    <div class="cta">
+      <a class="btn" href="mailto:himanshushiyara@gmail.com?subject=makRP%20%E2%80%94%20Unity%20Multiplayer%20Programmer">Email me</a>
+      <a class="btn ghost" href="https://github.com/Himan989" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn ghost" href="https://drive.google.com/file/d/1QdUBRCe1cQL1dG8ZaQCVVg2EZxk9h9DH/view?usp=sharing" target="_blank" rel="noopener">CV</a>
+    </div>
+  </header>
+
+  <section id="fit">
+    <div class="col">
+      <p class="eyebrow">Against your posting</p>
+      <h2>What you asked for, and what I actually have</h2>
+      <p>Your posting is specific, so this is too. Every row below points at shipped work, not a self-assessment. Where I fall short of what you wrote, the row says so.</p>
+    </div>
+
+    <div class="fit">
+      <div class="fit-row">
+        <div class="fit-ask"><em>You wrote</em>Strong Unity, especially networking</div>
+        <div class="fit-ev">6+ years in Unity/C#. Built and shipped multiplayer fish games and a multiplayer Poker title at Gameium, plus Socket.IO realtime backends for head-to-head tournament play on PlayPuzzles.</div>
+        <div><span class="tag m">Direct</span></div>
+      </div>
+      <div class="fit-row">
+        <div class="fit-ask"><em>You wrote</em>Persistent inventory, money and XP</div>
+        <div class="fit-ev">Shipped CosmoSlot, a real-money slot platform &mdash; server-held balances, transactional ledgers and anti-tamper rules where a desync costs actual money. PlayPuzzles pays TON prizes against a server-side wallet ledger.</div>
+        <div><span class="tag m">Direct</span></div>
+      </div>
+      <div class="fit-row">
+        <div class="fit-ask"><em>You wrote</em>Machines that run and produce goods</div>
+        <div class="fit-ev">Four cooking and merge titles &mdash; Indian Cooking Star, Asian Cooking Star, Cooking Valley, Merge Fever. Production queues, timed appliances, booster logic and offline catch-up are the entire genre. Same problem, different skin.</div>
+        <div><span class="tag m">Direct</span></div>
+      </div>
+      <div class="fit-row">
+        <div class="fit-ask"><em>You wrote</em>Comfortable with AI tools</div>
+        <div class="fit-ev">PlayPuzzles was built solo end-to-end &mdash; frontend, backend, game logic &mdash; in AI-assisted IDEs, and it is live and taking real players. Not a demo.</div>
+        <div><span class="tag m">Direct</span></div>
+      </div>
+      <div class="fit-row">
+        <div class="fit-ask"><em>You wrote</em>System design and optimisation</div>
+        <div class="fit-ev">I lead the Game Department at AllInOneTech Labs: 300+ titles reviewed across Unity, Cocos2d and Godot, and platform-wide WebGL load-time and stability work for funox.com.</div>
+        <div><span class="tag m">Direct</span></div>
+      </div>
+      <div class="fit-row">
+        <div class="fit-ask"><em>You wrote</em>100&ndash;150 players, persistent world</div>
+        <div class="fit-ev">My shipped multiplayer is room-scale &mdash; poker tables, fish rooms, tournament matches &mdash; not a hundred players in one persistent 1&nbsp;km&sup2; world. I have not shipped that scale.</div>
+        <div><span class="tag p">Gap</span></div>
+      </div>
+      <div class="fit-row">
+        <div class="fit-ask"><em>You wrote</em>Vehicles with fuel, damage, trunks</div>
+        <div class="fit-ev">No shipped vehicle systems. Networked physics with a single predicting owner is the part I would want to prototype before quoting it.</div>
+        <div><span class="tag p">Gap</span></div>
+      </div>
+    </div>
+
+    <div class="note col">
+      <div class="note-h">Straight answer on the gap</div>
+      I would rather you hear this from me than find it in week three. I have not shipped a 100-player persistent world. What I have shipped is the half that usually breaks studios anyway: authoritative servers holding real money, persistent economies that have to survive a crash, and production systems that keep ticking while players are offline. The scaling piece is the part I would be learning on your project &mdash; so the next section is me showing my working, not claiming the badge.
+    </div>
+  </section>
+
+  <section id="network">
+    <div class="col">
+      <p class="eyebrow">Your application question 5</p>
+      <h2>How I would network 100 players across 1&nbsp;km&sup2;</h2>
+      <p>Server-authoritative, headless Unity 6, with <strong>Fish-Net</strong> over Netcode for GameObjects &mdash; its interest management and prediction are more mature at this player count. The client is a renderer with opinions; it never owns state.</p>
+      <p>The whole problem is that a player only needs to know about a small slice of a 1&nbsp;km&sup2; map. So the map is a spatial grid of 64&nbsp;m cells, and each player subscribes to their own cell plus its eight neighbours &mdash; a 192&nbsp;m box of interest.</p>
+    </div>
+
+    <figure>
+      <div class="diagram">
+        <svg viewBox="0 0 420 330" role="img" aria-label="A 1 square kilometre map divided into a grid. One player at the centre replicates only the 3 by 3 block of cells around them; entities outside that block are not sent.">
+          <g stroke="var(--rule)" stroke-width="1" fill="none">
+            <path d="M40 30 H360 M40 70 H360 M40 110 H360 M40 150 H360 M40 190 H360 M40 230 H360 M40 270 H360 M40 310 H360"></path>
+            <path d="M40 30 V310 M80 30 V310 M120 30 V310 M160 30 V310 M200 30 V310 M240 30 V310 M280 30 V310 M320 30 V310 M360 30 V310"></path>
+          </g>
+          <rect x="160" y="110" width="120" height="120" fill="var(--brass-soft)" stroke="var(--brass)" stroke-width="2"></rect>
+          <circle cx="220" cy="170" r="6" fill="var(--brass)"></circle>
+          <g fill="var(--match)">
+            <circle cx="180" cy="135" r="3.5"></circle><circle cx="255" cy="145" r="3.5"></circle>
+            <circle cx="200" cy="210" r="3.5"></circle><circle cx="265" cy="205" r="3.5"></circle>
+            <circle cx="175" cy="190" r="3.5"></circle>
+          </g>
+          <g fill="var(--ink-2)" opacity="0.4">
+            <circle cx="70" cy="60" r="3.5"></circle><circle cx="120" cy="250" r="3.5"></circle>
+            <circle cx="330" cy="80" r="3.5"></circle><circle cx="310" cy="290" r="3.5"></circle>
+            <circle cx="90" cy="160" r="3.5"></circle><circle cx="345" cy="185" r="3.5"></circle>
+            <circle cx="140" cy="45" r="3.5"></circle><circle cx="240" cy="295" r="3.5"></circle>
+          </g>
+          <text x="200" y="325" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--ink-2)">1 km &#8212; 64 m cells</text>
+          <text x="374" y="168" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--brass)">AOI</text>
+          <text x="374" y="182" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--brass)">3&#215;3</text>
+        </svg>
+      </div>
+      <figcaption>Brass = the player and their area of interest. Green = entities replicated to them. Grey = everything else on the server, simulated but never sent. At 100&ndash;150 players spread over 1&nbsp;km&sup2;, a typical client sees 20&ndash;30 others, not 149.</figcaption>
+    </figure>
+
+    <ul class="spec col">
+      <li><span class="k">Tick rates</span><span class="v">Server simulates at <b>30&nbsp;Hz</b>, sends at <b>15&ndash;20&nbsp;Hz</b>. Clients interpolate on a ~100&nbsp;ms buffer; the local player predicts and reconciles.</span></li>
+      <li><span class="k">On the wire</span><span class="v">Delta-compressed snapshots against each client's last acknowledged state. Positions quantised to 16 bits per axis within a cell, rotations smallest-three. <b>Roughly 20 bytes per entity per update</b>, not a full transform.</span></li>
+      <li><span class="k">Priority</span><span class="v">A per-client byte budget with a priority accumulator &mdash; near, visible and recently-changed entities get the packet first; distant ones degrade to a slower refresh instead of being dropped.</span></li>
+      <li><span class="k">Persistence</span><span class="v">Inventory, money and XP are server-owned rows, not networked objects. Postgres of record with Redis write-behind; event-driven saves on every transfer plus a periodic flush. Item moves are <b>idempotent transactions</b> so a mid-trade disconnect cannot duplicate a gun.</span></li>
+      <li><span class="k">Physical items</span><span class="v">World items are server entities with an ownership token. Picking up, carrying and stealing are all server-validated state transitions &mdash; the client only ever sends intent.</span></li>
+      <li><span class="k">Machines</span><span class="v">Production does not tick. Each machine stores <b>lastEvaluated</b> and resolves output lazily from elapsed time when touched or when it enters someone's AOI. A thousand machines cost nothing while nobody is looking at them.</span></li>
+      <li><span class="k">Vehicles</span><span class="v">Server-authoritative physics, prediction for the driver only; passengers interpolate. Fuel, damage and trunk contents are persisted records, not physics state.</span></li>
+      <li><span class="k">Anti-cheat</span><span class="v">Nothing client-trusted, rate limits on every intent, and server-side sanity checks on movement deltas. Habit from real-money slots, where an exploit is a chargeback.</span></li>
+    </ul>
+
+    <div class="budget col">
+      <div class="bh">Rough downstream budget, per client</div>
+      <div class="r"><span class="lbl">Entities in AOI</span><span>25</span></div>
+      <div class="r"><span class="lbl">Bytes per entity per update</span><span>20</span></div>
+      <div class="r"><span class="lbl">Send rate</span><span>20 Hz</span></div>
+      <div class="r tot"><span class="lbl">Per client</span><span>~10 KB/s &middot; ~80 kbps</span></div>
+      <div class="r tot"><span class="lbl">150 clients, server upstream</span><span>~1.5 MB/s &middot; ~12 Mbps</span></div>
+    </div>
+    <p class="col" style="margin-top:14px; font-size:14px; color:var(--ink-2)">That is comfortably inside a single dedicated box. If it is not, the first lever is send rate by distance band, then AOI radius &mdash; not a rewrite.</p>
+  </section>
+
+  <section id="ai">
+    <div class="col">
+      <p class="eyebrow">Your application question 6</p>
+      <h2>How I work with AI</h2>
+      <p>You asked because you want to know whether it makes someone faster or just louder. Mine is narrow and boring: AI-assisted IDEs for scaffolding, boilerplate systems, test cases and breaking a vague feature into ordered tasks. I read every line before it lands.</p>
+      <p>PlayPuzzles is the honest test case &mdash; a Telegram crypto tournament platform where I wrote the frontend, the backend, the matchmaking and the game logic myself, with AI carrying the repetitive half. One person, live product, real payouts. It is also why the deal you describe makes sense to me: if knowing what to build matters more than typing speed, then <strong>paying for delivery rather than hours is the correct incentive</strong>, and I would rather be measured that way.</p>
+    </div>
+  </section>
+
+  <section id="shipped">
+    <div class="col">
+      <p class="eyebrow">Your application question 2</p>
+      <h2>What I have shipped</h2>
+      <p>Six years, three studios and one product of my own. Highlighted chips are the ones that bear directly on makRP.</p>
+    </div>
+
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-top"><h3>Founder &amp; Full-Stack Developer</h3><span class="tl-when">2025 &mdash; present</span></div>
+        <div class="tl-org">PlayPuzzles &middot; Telegram crypto tournament platform</div>
+        <p>Built solo, end to end. Head-to-head skill tournaments paying TON prizes, with a server-side wallet ledger, realtime matchmaking over Socket.IO, and organic product-led growth. No team, no funding.</p>
+        <div class="chips"><span class="chip hi">Socket.IO realtime</span><span class="chip hi">Persistent ledger</span><span class="chip hi">AI-assisted build</span><span class="chip">TON blockchain</span><span class="chip">Full-stack</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-top"><h3>Senior Game Developer &mdash; Dept. Lead</h3><span class="tl-when">2025 &mdash; present</span></div>
+        <div class="tl-org">AllInOneTech Labs &middot; funox.com</div>
+        <p>Lead the Game Department. Reviewed and approved 300+ titles across Unity, Cocos2d and Godot, shipped WebGL games with ad SDK and platform integration, and drove platform-wide load-time and stability work.</p>
+        <div class="chips"><span class="chip hi">Optimisation at scale</span><span class="chip hi">Architecture review</span><span class="chip">WebGL</span><span class="chip">Unity / Cocos2d / Godot</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-top"><h3>Unity Game Developer</h3><span class="tl-when">Oct 2022 &mdash; 2025</span></div>
+        <div class="tl-org">Gameium LLP &middot; cosmoslots.com</div>
+        <p>Built slot games, multiplayer fish games and poker card games in Unity/C#. Led CosmoSlot, a real-money slot platform, and a multiplayer Poker title &mdash; server-authoritative rounds, WebEngage analytics, DoTween animation and an emoji-based social feature.</p>
+        <div class="chips"><span class="chip hi">Multiplayer poker</span><span class="chip hi">Multiplayer fish</span><span class="chip hi">Real-money authority</span><span class="chip">WebEngage</span><span class="chip">VFX &amp; shaders</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-top"><h3>Game Developer &amp; Lead VFX Artist</h3><span class="tl-when">Jan 2019 &mdash; Oct 2022</span></div>
+        <div class="tl-org">The AppGuruz &middot; theappguruz.com</div>
+        <p>Shipped four mobile titles &mdash; Indian Cooking Star, Asian Cooking Star, Merge Fever, Cooking Valley. Owned core gameplay, level progression and UI, and led the animation and VFX team on Spine 2D, particles and booster systems.</p>
+        <div class="chips"><span class="chip hi">Production queues</span><span class="chip hi">Timed machines</span><span class="chip">Spine 2D</span><span class="chip">Level design</span><span class="chip">Booster systems</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="apply">
+    <div class="col">
+      <p class="eyebrow">Your application form</p>
+      <h2>The rest of your questions</h2>
+      <p>Answered in your order, so you do not have to go looking.</p>
+    </div>
+
+    <div class="qa">
+      <div class="qa-item"><span class="qa-n">01</span><div>
+        <div class="qa-q">Name, email, portfolio, GitHub</div>
+        <div class="qa-a">Himanshu Shiyara &middot; himanshushiyara@gmail.com &middot; <a href="https://github.com/Himan989" target="_blank" rel="noopener">github.com/Himan989</a> &middot; <a href="https://drive.google.com/file/d/1QdUBRCe1cQL1dG8ZaQCVVg2EZxk9h9DH/view?usp=sharing" target="_blank" rel="noopener">CV</a></div>
+      </div></div>
+      <div class="qa-item"><span class="qa-n">02</span><div>
+        <div class="qa-q">Projects you have worked on</div>
+        <div class="qa-a">CosmoSlot, multiplayer Poker and fish titles, PlayPuzzles, funox.com's WebGL catalogue, Indian and Asian Cooking Star, Merge Fever, Cooking Valley. Detail above.</div>
+      </div></div>
+      <div class="qa-item"><span class="qa-n">03</span><div>
+        <div class="qa-q">Largest multiplayer system you have worked on</div>
+        <div class="qa-a">Room-scale rather than world-scale: concurrent multiplayer Poker and fish rooms on a real-money platform, and PlayPuzzles' realtime tournament matchmaking. Tens of concurrent sessions, not one shared 100-player world &mdash; stated plainly in the gap note above.</div>
+      </div></div>
+      <div class="qa-item"><span class="qa-n">04</span><div>
+        <div class="qa-q">Relevant networking experience</div>
+        <div class="qa-a">Server-authoritative game rounds where the server owns every outcome, Socket.IO realtime backends, state sync and reconnection handling, and persistent balances that must survive a crash mid-transaction.</div>
+      </div></div>
+      <div class="qa-item"><span class="qa-n">05</span><div>
+        <div class="qa-q">Networking 100 players in 1 km&sup2;</div>
+        <div class="qa-a">Full answer with the AOI grid, wire format and bandwidth budget in the <a href="#network">networking section</a>.</div>
+      </div></div>
+      <div class="qa-item"><span class="qa-n">06</span><div>
+        <div class="qa-q">AI usage and process</div>
+        <div class="qa-a">Covered in <a href="#ai">how I work with AI</a>. Short version: scaffolding and task breakdown, every line reviewed, one live product built that way.</div>
+      </div></div>
+      <div class="qa-item"><span class="qa-n">07</span><div>
+        <div class="qa-q">Weekly hours available</div>
+        <div class="qa-a"><span class="fill">fill in before sending</span></div>
+      </div></div>
+      <div class="qa-item"><span class="qa-n">08</span><div>
+        <div class="qa-q">Country</div>
+        <div class="qa-a">India &mdash; Rajkot, Gujarat. UTC+5:30, and I keep my own hours, so overlap is not a problem.</div>
+      </div></div>
+      <div class="qa-item"><span class="qa-n">09</span><div>
+        <div class="qa-q">Rate or price range</div>
+        <div class="qa-a"><span class="fill">fill in before sending</span> &mdash; the 50/50 split on delivery works for me.</div>
+      </div></div>
+      <div class="qa-item"><span class="qa-n">10</span><div>
+        <div class="qa-q">Anything else</div>
+        <div class="qa-a">The Garry's Mod and Rust lineage is the reason I am writing. I have spent six years making systems that have to be correct because money moves through them &mdash; and I would rather point that at a persistent world than another slot machine.</div>
+      </div></div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p class="eyebrow">Contact</p>
+    <h2>Happy to start with a paid trial task</h2>
+    <p class="col">The fastest way to judge me is to give me one system &mdash; inventory sync, a production machine, the AOI layer &mdash; and see what comes back.</p>
+    <div class="foot-grid">
+      <div><div class="foot-k">Email</div><div class="foot-v"><a href="mailto:himanshushiyara@gmail.com">himanshushiyara@gmail.com</a></div></div>
+      <div><div class="foot-k">Phone</div><div class="foot-v">+91 79906 06224</div></div>
+      <div><div class="foot-k">GitHub</div><div class="foot-v"><a href="https://github.com/Himan989" target="_blank" rel="noopener">Himan989</a></div></div>
+      <div><div class="foot-k">Based in</div><div class="foot-v">Rajkot, Gujarat, India</div></div>
+    </div>
+    <div class="sig">
+      <span>Himanshu Shiyara &middot; Senior Unity Game Developer</span>
+      <span>Written for makRP &middot; Unity Multiplayer Programmer</span>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+  var secs = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
+  function sync(){
+    var y = window.scrollY + 140, best = -1;
+    for (var i = 0; i < secs.length; i++){
+      if (secs[i] && secs[i].offsetTop <= y) best = i;
+    }
+    links.forEach(function(a, i){ a.classList.toggle('on', i === best); });
+  }
+  var tick = false;
+  window.addEventListener('scroll', function(){
+    if (tick) return;
+    tick = true;
+    requestAnimationFrame(function(){ sync(); tick = false; });
+  }, {passive:true});
+  sync();
+})();
+</script>
+</body>
+</html>
