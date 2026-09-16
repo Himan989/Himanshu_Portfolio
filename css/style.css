@@ -278,6 +278,7 @@ body::before {
 .skill-card .sc-icon { width: 42px; height: 42px; border-radius: 11px; display: grid; place-items: center; background: linear-gradient(135deg, rgba(34,211,238,.16), rgba(168,85,247,.16)); border: 1px solid var(--border-lit); }
 .skill-card .sc-icon svg { width: 22px; height: 22px; color: var(--cyan-soft); }
 .skill-card h4 { font-family: var(--font-head); font-size: 1.05rem; font-weight: 600; }
+.skill-card p { color: var(--text-mut); font-size: .93rem; line-height: 1.7; margin-bottom: 16px; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .chips span { font-size: .84rem; padding: 6px 13px; border-radius: 9px; background: var(--surface-2); border: 1px solid var(--border); color: var(--text-mut); transition: .2s; }
 .chips span:hover { color: var(--text); border-color: var(--cyan); }
